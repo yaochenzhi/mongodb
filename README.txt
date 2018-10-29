@@ -169,3 +169,36 @@ db.users.aggregate({
         richest: {$max: "$balance"}
     }
 })
+
+
+##### Practical Usage
+1   Pymongo Query with Dictionary inside Dictionary?
+
+    {"ONE": {"TWO": {"THREE":"5"}}}
+
+    dbaccess.find("ONE.TWO.THREE": {"$gt": 0})
+
+
+2   How do I query an array of dictionaries in MongoDB?
+    {
+        "t": "m",
+        "y": "n",
+        "A":[ 
+                {
+                 "name": "x",
+                 "value": "1"
+                },
+                {
+                 "name": "y",
+                 "value": "2"
+                },
+                {
+                 "name": "z",
+                 "value": "1"
+                }
+            ]
+    }
+
+    db.collection.find( {
+      "A": { $elemMatch: { name: "x", value: "1" } }
+    })
